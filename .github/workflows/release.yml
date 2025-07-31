@@ -18,29 +18,29 @@ jobs:
         build:
           - {
               NAME: linux-x64,
-              OS: ubuntu-22.04,
+              OS: ubuntu-24.04,
               TARGET: x86_64-unknown-linux-gnu,
             }
           - {
               NAME: windows-x64,
-              OS: windows-2022,
+              OS: windows-2025,
               TARGET: x86_64-pc-windows-msvc,
             }
-          - {
-              NAME: windows-arm64,
-              OS: windows-2022,
-              TARGET: aarch64-pc-windows-msvc,
-            }
-          - {
-              NAME: darwin-x64,
-              OS: macos-12,
-              TARGET: x86_64-apple-darwin,
-            }
-          - {
-              NAME: darwin-arm64,
-              OS: macos-12,
-              TARGET: aarch64-apple-darwin,
-            }
+          # - {
+          #     NAME: windows-arm64,
+          #     OS: windows-11-arm,
+          #     TARGET: aarch64-pc-windows-msvc,
+          #   }
+          # - {
+          #     NAME: darwin-x64,
+          #     OS: macos-13,
+          #     TARGET: x86_64-apple-darwin,
+          #   }
+          # - {
+          #     NAME: darwin-arm64,
+          #     OS: macos-15,
+          #     TARGET: aarch64-apple-darwin,
+          #   }
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -105,7 +105,8 @@ jobs:
         uses: actions/download-artifact@v4
         if: env.SHOULD_RELEASE == 'yes'
         with:
-          name: built-binaries-*
+          pattern: built-binaries-*
+          merge-multiple: true
           path: bin
 
       - name: Publish release
