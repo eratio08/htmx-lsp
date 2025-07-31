@@ -1,6 +1,6 @@
 [package]
 name = "htmx-lsp"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A language server for htmx"
 license = "MIT"
@@ -37,7 +37,4 @@ serde_json = "1.0.103"
 structured-logger = "1.0.1"
 
 [workspace]
-members = [
-    "lsp",
-    "util",
-]
+members = ["lsp", "util"]
